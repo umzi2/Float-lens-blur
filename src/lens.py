@@ -18,16 +18,16 @@ def generate_circle(x: int, y: int, radius: int, center: int) -> bool:
     return (x - center) ** 2 + (y - center) ** 2 <= radius ** 2
 
 
-def defocus_blur(image: np.ndarray, dimension: float) -> np.ndarray:
+def lens_blur(image: np.ndarray, dimension: float) -> np.ndarray:
     """
-    Applies defocus blur effect to an image.
+    Applies lens blur effect to an image.
 
     Args:
         image (np.ndarray): Input image as a numpy array.
         dimension (float): Kernel size for the blur effect.
 
     Returns:
-        np.ndarray: Image with the applied defocus blur.
+        np.ndarray: Image with the applied lens blur.
     """
     image_array = image
     kernel = disk_kernel(dimension)
@@ -76,5 +76,4 @@ def disk_kernel(kernel_size: float) -> np.ndarray:
                 kernel[i, j] = generate_circle(i, j, circle_radius, circle_center_coord)
 
     kernel /= np.sum(kernel)
-
     return kernel
